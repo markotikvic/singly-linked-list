@@ -15,27 +15,20 @@ int main(void)
 	sort_list_by_reference(&head, 1);
 	//sort_list_by_value(&head, -1);
 	//sort_list_by_reference(&head, -1);
+
+	//remove_node(&head, 1);
+	//remove_node(&head, 2);
+	//remove_node(&head, 3);
+	//remove_node(&head, 4);
+
+	//add_node(&head, 7);
+
+	//remove_first(&head);
+	//remove_last(&head);
+	//remove_after(&head, 8);
+	//remove_before(&head, 4);
+
 	print_list(&head);
-
-	/*remove_node(&head, 1);
-	print_list(&head);
-
-	remove_node(&head, 2);
-	print_list(&head);
-
-	remove_node(&head, 3);
-	print_list(&head);
-
-	remove_node(&head, 4);
-	print_list(&head);
-
-	add_node(&head, 7);
-	print_list(&head);*/
-
-	/*remove_first(&head);
-	remove_last(&head);
-	remove_after(&head, 8);
-	remove_before(&head, 4);*/
 
 	destroy_list(&head);
 
