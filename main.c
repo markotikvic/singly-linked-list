@@ -253,7 +253,6 @@ void sort_list_by_value(struct node **head, int dir)
 			curr = curr->next;
 		}
 	}
-	printf("sorted!\n");
 }
 
 // @TODO
@@ -262,7 +261,7 @@ void sort_list_by_reference(struct node **head, int dir)
 	if (*head == NULL)
 		return;
 
-	struct node *a, *b, *c, *temp, *tempnext;
+	struct node *a, *b, *c;
 	int done = 0;
 
 	while (!done) {
@@ -289,5 +288,4 @@ void sort_list_by_reference(struct node **head, int dir)
 			c = c->next;
 		}
 	}
-	printf("sorted!\n");
 }
