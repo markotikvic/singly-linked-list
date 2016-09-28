@@ -1,68 +1,12 @@
 // Keep API consistent (require **head even if only *head would do the job)
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/singly_linked_list.h"
 
 struct node {
 	int val;
 	struct node *next;
 };
-
-struct node *create_new_list(int val);
-void add_node(struct node **head, int val);
-void insert_first(struct node **head, int val);
-void insert_before(struct node **head, int key, int val);
-void insert_after(struct node **head, int key, int val);
-void remove_first(struct node **head);
-void remove_last(struct node **head);
-void remove_before(struct node **head, int key);
-void remove_after(struct node **head, int key);
-void remove_node(struct node **head, int key);
-void print_list(struct node **head);
-void destroy_list(struct node **head);
-void sort_list_by_value(struct node **head, int dir);
-void sort_list_by_reference(struct node **head, int dir);
-
-int main(void)
-{
-	struct node *head = create_new_list(1);
-
-	add_node(&head, 9);
-	add_node(&head, 0);
-	add_node(&head, 8);
-	add_node(&head, 6);
-	add_node(&head, 3);
-	print_list(&head);
-
-	//sort_list_by_value(&head, 1);
-	//sort_list_by_reference(&head, 1);
-	//sort_list_by_value(&head, -1);
-	sort_list_by_reference(&head, -1);
-	print_list(&head);
-
-	/*remove_node(&head, 1);
-	print_list(&head);
-
-	remove_node(&head, 2);
-	print_list(&head);
-
-	remove_node(&head, 3);
-	print_list(&head);
-
-	remove_node(&head, 4);
-	print_list(&head);
-
-	add_node(&head, 7);
-	print_list(&head);*/
-
-	/*remove_first(&head);
-	remove_last(&head);
-	remove_after(&head, 8);
-	remove_before(&head, 4);*/
-
-	destroy_list(&head);
-
-	return 0;
-}
 
 struct node *create_new_list(int val)
 {

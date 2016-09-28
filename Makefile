@@ -1,2 +1,2 @@
-nnbpmake: main.c 
-	gcc main.c -o sll -std=c99
+nnbpmake: ./src/main.c 
+	gcc ./src/main.c ./src/singly_linked_list.c -o sll
