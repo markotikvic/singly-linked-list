@@ -205,31 +205,31 @@ void sort_list_by_reference(struct node **head, int dir)
 	if (*head == NULL)
 		return;
 
-	struct node *a, *b, *c;
+	struct node *back, *middle, *front;
 	int done = 0;
 
 	while (!done) {
-		b = *head;
-		c = (*head)->next;
-		a = NULL;
+		middle = *head;
+		front = (*head)->next;
+		back = NULL;
 		done = 1;
-		while (c != NULL) {
-			if (dir*b->val > dir*c->val) {
+		while (front != NULL) {
+			if (dir*middle->val > dir*front->val) {
 				done = 0;
-				b->next = c->next;
-				c->next = b;
+				middle->next = front->next;
+				front->next = middle;
 
-				if (a != NULL)
-					a->next = c;
+				if (back != NULL)
+					back->next = front;
 				else
-					*head = c;
-				a = c;
-				c = b->next;
+					*head = front;
+				back = front;
+				front = middle->next;
 				break;
 			}
-			a = b;
-			b = c;
-			c = c->next;
+			back = middle;
+			middle = front;
+			front = front->next;
 		}
 	}
 }
