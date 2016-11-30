@@ -1,8 +1,8 @@
-#include "../include/singly_linked_list.h"
+#include "../include/list.h"
 
 int main(void)
 {
-	struct node *head = create_new_list(1);
+	struct node *head = new_list(1);
 	add_node(&head, 9);
 	add_node(&head, 0);
 	add_node(&head, 8);
@@ -17,7 +17,7 @@ int main(void)
 
 	add_node(&head, 7);
 
-	//remove_first(&head);
+	remove_first(&head);
 	//remove_last(&head);
 	//remove_after(&head, 8);
 	//remove_before(&head, 4);

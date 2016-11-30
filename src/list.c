@@ -1,18 +1,17 @@
-// Keep API consistent (require **head even if only *head would do the job)
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/singly_linked_list.h"
+#include "../include/list.h"
 
 struct node {
 	int val;
 	struct node *next;
 };
 
-struct node *create_new_list(int val)
+struct node *new_list(int val)
 {
-	struct node *head = (struct node*)malloc(sizeof(struct node*));
+	struct node *head = (struct node*) malloc(sizeof(struct node*));
 
-	head = (struct node*)malloc(sizeof(struct node));
+	head = (struct node*) malloc(sizeof(struct node));
 	head->val = val;
 	head->next = NULL;
 	return head;
@@ -26,7 +25,7 @@ void add_node(struct node **head, int val)
 	}
 
 	struct node *curr = *head;
-	struct node *n = (struct node*)malloc(sizeof(struct node));
+	struct node *n = (struct node*) malloc(sizeof(struct node));
 	n->val = val;
 	while (curr->next)
 		curr = curr->next;
@@ -38,7 +37,7 @@ void add_node(struct node **head, int val)
 // of the pointer passed from main function.
 void insert_first(struct node **head, int val)
 {
-	struct node *n = (struct node*)malloc(sizeof(struct node));
+	struct node *n = (struct node*) malloc(sizeof(struct node));
 	n->val = val;
 	n->next = *head;
 	*head = n;
@@ -46,14 +45,13 @@ void insert_first(struct node **head, int val)
 
 void insert_before(struct node **head, int key, int val)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *curr = *head;
 	struct node *prev = curr;
+	struct node *n;
+
 	while (curr != NULL) {
 		if (curr->val == key) {
-			struct node *n = (struct node*)malloc(sizeof(struct node));
+			n = (struct node*) malloc(sizeof(struct node));
 			n->val = val;
 			n->next = curr;
 			prev->next = n;
@@ -66,13 +64,12 @@ void insert_before(struct node **head, int key, int val)
 
 void insert_after(struct node **head, int key, int val)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *curr = *head;
+	struct node *n;
+
 	while (curr != NULL) {
 		if (curr->val == key) {
-			struct node *n = (struct node*)malloc(sizeof(struct node));
+			n = (struct node*) malloc(sizeof(struct node));
 			n->val = val;
 			n->next = curr->next;
 			curr->next = n;
@@ -84,9 +81,6 @@ void insert_after(struct node **head, int key, int val)
 
 void remove_first(struct node **head)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *to_del = *head;
 	*head = (*head)->next;
 	free(to_del);
@@ -94,9 +88,6 @@ void remove_first(struct node **head)
 
 void remove_last(struct node **head)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *n = *head;
 	while (n->next->next != NULL)
 		n = n->next;
@@ -106,11 +97,9 @@ void remove_last(struct node **head)
 
 void remove_before(struct node **head, int key)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *curr = *head;
 	struct node *prev = curr;
+
 	while (curr->next != NULL) {
 	       	if (curr->next->val == key) {
 			prev->next = curr->next;
@@ -123,10 +112,8 @@ void remove_before(struct node **head, int key)
 
 void remove_after(struct node **head, int key)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *curr = *head;
+
 	while (curr != NULL) {
 		if (curr->val == key) {
 			struct node *tmp = curr->next;
@@ -140,13 +127,9 @@ void remove_after(struct node **head, int key)
 
 void remove_node(struct node **head, int key)
 {
-	if (*head == NULL)
-		return;
-
 	while (*head != NULL) {
 		if ((*head)->val == key) {
 			struct node *tmp = *head;
-			//curr = curr->next;
 			*head = (*head)->next;
 			free(tmp);
 			break;
@@ -178,9 +161,6 @@ void destroy_list(struct node **head)
 
 void sort_list_by_value(struct node **head, int dir)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *curr;
 	int done = 0, temp;
 
@@ -199,12 +179,8 @@ void sort_list_by_value(struct node **head, int dir)
 	}
 }
 
-// @TODO
 void sort_list_by_reference(struct node **head, int dir)
 {
-	if (*head == NULL)
-		return;
-
 	struct node *back, *middle, *front;
 	int done = 0;
 
