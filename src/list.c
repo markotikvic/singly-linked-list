@@ -1,3 +1,5 @@
+/* TODO: add "move" functions */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/list.h"
@@ -10,10 +12,10 @@ struct node {
 struct node *new_list(int val)
 {
 	struct node *head = (struct node*) malloc(sizeof(struct node*));
-
 	head = (struct node*) malloc(sizeof(struct node));
 	head->val = val;
 	head->next = NULL;
+
 	return head;
 }
 
@@ -27,14 +29,17 @@ void add_node(struct node **head, int val)
 	struct node *curr = *head;
 	struct node *n = (struct node*) malloc(sizeof(struct node));
 	n->val = val;
+	n->next = NULL;
 	while (curr->next)
 		curr = curr->next;
 	curr->next = n;
 }
 
-// This is only a copy of a pointer.
-// Changing its value doesn't change the value
-// of the pointer passed from main function.
+/*
+ This is only a copy of a pointer.
+ Changing its value doesn't change the value
+ of the pointer passed from main function.
+*/
 void insert_first(struct node **head, int val)
 {
 	struct node *n = (struct node*) malloc(sizeof(struct node));
@@ -79,14 +84,15 @@ void insert_after(struct node **head, int key, int val)
 	}
 }
 
-void remove_first(struct node **head)
+void delete_first(struct node **head)
 {
 	struct node *to_del = *head;
 	*head = (*head)->next;
 	free(to_del);
+	to_del = NULL;
 }
 
-void remove_last(struct node **head)
+void delete_last(struct node **head)
 {
 	struct node *n = *head;
 	while (n->next->next != NULL)
@@ -95,7 +101,7 @@ void remove_last(struct node **head)
 	n->next = NULL;
 }
 
-void remove_before(struct node **head, int key)
+void delete_before(struct node **head, int key)
 {
 	struct node *curr = *head;
 	struct node *prev = curr;
@@ -104,35 +110,39 @@ void remove_before(struct node **head, int key)
 	       	if (curr->next->val == key) {
 			prev->next = curr->next;
 			free(curr);
+			curr = NULL;
+			break;
 		}
 		prev = curr;
 		curr = curr->next;
 	}
 }
 
-void remove_after(struct node **head, int key)
+void delete_after(struct node **head, int key)
 {
 	struct node *curr = *head;
 
 	while (curr != NULL) {
-		if (curr->val == key) {
+		if (curr->val == key && curr->next != NULL) {
 			struct node *tmp = curr->next;
 			curr->next = curr->next->next;
 			free(tmp);
+			tmp = NULL;
 			break;
 		}
 		curr = curr->next;
 	}
 }
 
-void remove_node(struct node **head, int key)
+void delete_node(struct node **head, int key)
 {
 	while (*head != NULL) {
 		if ((*head)->val == key) {
 			struct node *tmp = *head;
 			*head = (*head)->next;
 			free(tmp);
-			break;
+			tmp = NULL;
+			continue;
 		}
 		head = &(*head)->next;
 	}
