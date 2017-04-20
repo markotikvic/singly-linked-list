@@ -1,4 +1,4 @@
-#include "../include/list.h"
+#include "list.h"
 
 int main(void)
 {
@@ -28,11 +28,11 @@ int main(void)
 	//delete_last(&head);
 	//delete_after(&head, 8);
 	//delete_before(&head, 4);
-	
+
 	//sort_list_by_reference(&head, 1);
 	//sort_list_by_value(&head, 1);
 	//sort_list_by_value(&head, -1);
-	//sort_list_by_reference(&head, -1);
+	sort_list_by_reference(&head, -1);
 
 	add_node(&head, 22);
 	print_list(&head);

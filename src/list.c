@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/list.h"
+#include "list.h"
 
 struct node {
 	int val;
@@ -155,7 +155,7 @@ void print_list(struct node **head)
 	while (n != NULL) {
 		printf("-> %d\n", n->val);
 		n = n->next;
-	} 
+	}
 }
 
 void destroy_list(struct node **head)
